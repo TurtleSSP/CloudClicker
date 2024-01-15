@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -8,9 +10,16 @@ public class ScoreManager : MonoBehaviour
     int scoreToAdd = 0;
     int clickAmount = 1;
 
+    [SerializeField] TMP_Text scoreText;
+
     void Start()
     {
         InvokeRepeating("AddAutoScore", 0, 1);
+    }
+
+    void Update()
+    {
+        scoreText.SetText("Score: " + currentScore);
     }
 
     void AddAutoScore()
