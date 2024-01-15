@@ -22,11 +22,11 @@ public class ScoreManager : MonoBehaviour
     public void AddScore()
     {
         currentScore = currentScore + clickAmount;
+        Debug.Log(currentScore);
     }
 
     public void Upgrade1()
     {
         scoreToAdd++;
-        Debug.Log(currentScore);
     }
 }
