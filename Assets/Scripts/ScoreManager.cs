@@ -24,7 +24,6 @@ public class ScoreManager : MonoBehaviour
     void AddAutoScore()
     {
         currentScore = currentScore + scoreToAdd;
-        Debug.Log(currentScore);
     }
 
     public void AddScore()
@@ -35,6 +34,5 @@ public class ScoreManager : MonoBehaviour
     public void Upgrade1()
     {
         scoreToAdd++;
-        Debug.Log(currentScore);
     }
 }
