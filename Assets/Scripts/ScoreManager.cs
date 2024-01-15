@@ -32,10 +32,11 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("started");
         while(true)
         {
-            if(scoreToAdd > 0)
+            yield return new WaitForSeconds(0);
+            if(scoreToAdd >= 1)
             {
-                Debug.Log("raindrop!");
-                yield return new WaitForSeconds(1/scoreToAdd);
+                Debug.Log("raindrop!" + scoreToAdd);
+                yield return new WaitForSeconds(1f/scoreToAdd);
                 Instantiate(rainDrop);
             }
         }
