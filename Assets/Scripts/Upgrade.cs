@@ -9,19 +9,22 @@ public class Upgrade : MonoBehaviour
 
     [SerializeField] TMP_Text upgradeLevelTxt;
     [SerializeField] TMP_Text upgradePriceTxt;
+    [SerializeField] TMP_Text warningTxt;
 
-    int upgradeLevel = 0;
     [SerializeField] int upgradeAmount;
     [SerializeField] float priceIncrease;
     [SerializeField] float upgradePrice;
+
+    int upgradeLevel = 0;
 
     private void Start()
     {
         upgradeLevelTxt.SetText(upgradeLevel.ToString());
         upgradePriceTxt.SetText(upgradePrice.ToString());
+        warningTxt.enabled = false;
     }
 
-    void OnUpgrade()
+    public void OnUpgrade()
     {
         if (scoreManager.currentScore >= upgradePrice)
         {
@@ -32,7 +35,12 @@ public class Upgrade : MonoBehaviour
 
             upgradeLevelTxt.SetText(upgradeLevel.ToString());
             upgradePriceTxt.SetText(upgradePrice.ToString());
-            scoreManager.scoreTxt.SetText(scoreManager.currentScore.ToString());
+            scoreManager.scoreTxt.SetText("Score: " + scoreManager.currentScore);
+            warningTxt.enabled = false;
+        }
+        else
+        {
+            warningTxt.enabled = true;
         }
     }
 }
