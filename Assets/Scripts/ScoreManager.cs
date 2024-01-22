@@ -6,6 +6,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text warningText;
     [SerializeField] TMP_Text up1LevelText;
     [SerializeField] TMP_Text up1PriceText;
 
@@ -24,6 +25,8 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(RainDown());
         up1LevelText.SetText("" + up1Level);
         up1PriceText.SetText("" + up1Price);
+        warningText.color = Color.red;
+        warningText.enabled = false;
     }
 
     IEnumerator RainDown()
@@ -65,10 +68,12 @@ public class ScoreManager : MonoBehaviour
             scoreText.SetText("Score: " + currentScore);
             up1LevelText.SetText("" + up1Level);
             up1PriceText.SetText("" + up1Price);
+            warningText.enabled = false;
         }
         else
         {
-            Debug.Log("Not Enough Clicks");
+            warningText.SetText("Not Enough Raindrops!");
+            warningText.enabled = true;
         }
     }
 }
