@@ -291,8 +291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 525, y: 275}
-  m_SizeDelta: {x: 715, y: 80}
+  m_AnchoredPosition: {x: 525, y: 270}
+  m_SizeDelta: {x: 525, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338043568
 MonoBehaviour:
@@ -341,13 +341,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 0
+  m_fontSizeBase: 0
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -1303,10 +1303,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 710183460}
   warningText: {fileID: 338043568}
+  scoreTxt: {fileID: 710183460}
   up1LevelText: {fileID: 520545646}
   up1PriceText: {fileID: 93050125}
   rainDrop: {fileID: 539510519772271428, guid: 1137c407cc89d6442999b7928c001785, type: 3}
   up1Price: 10
+  currentScore: 0
+  scoreToAdd: 0
 --- !u!4 &994837325
 Transform:
   m_ObjectHideFlags: 0
