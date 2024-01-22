@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text scoreText;
+    public TMP_Text scoreTxt;
     [SerializeField] TMP_Text up1LevelText;
     [SerializeField] TMP_Text up1PriceText;
 
@@ -14,8 +14,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] float up1Price;
 
     int up1Level = 0;
-    int currentScore = 0;
-    int scoreToAdd = 0;
+    public int currentScore = 0;
+    public int scoreToAdd = 0;
     int clickAmount = 1;
 
     void Start()
@@ -44,13 +44,13 @@ public class ScoreManager : MonoBehaviour
     void AddAutoScore()
     {
         currentScore = currentScore + scoreToAdd;
-        scoreText.SetText("Score: " + currentScore);
+        scoreTxt.SetText("Score: " + currentScore);
     }
 
     public void AddScore()
     {
         currentScore = currentScore + clickAmount;
-        scoreText.SetText("Score: " + currentScore);
+        scoreTxt.SetText("Score: " + currentScore);
         Instantiate(rainDrop);
     }
 
@@ -62,13 +62,10 @@ public class ScoreManager : MonoBehaviour
             up1Level++;
             currentScore = currentScore - (int)up1Price;
             up1Price = Mathf.Round(up1Price * 1.3f);
-            scoreText.SetText("Score: " + currentScore);
+
+            scoreTxt.SetText("Score: " + currentScore);
             up1LevelText.SetText("" + up1Level);
             up1PriceText.SetText("" + up1Price);
-        }
-        else
-        {
-            Debug.Log("Not Enough Clicks");
         }
     }
 }
