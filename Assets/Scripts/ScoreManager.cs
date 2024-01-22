@@ -17,14 +17,13 @@ public class ScoreManager : MonoBehaviour
     int currentScore = 0;
     int scoreToAdd = 0;
     int clickAmount = 1;
-    int up1Amount = 0;
 
     void Start()
     {
         InvokeRepeating("AddAutoScore", 0, 1);
         StartCoroutine(RainDown());
-        up1LevelText.SetText("0");
-        up1PriceText.SetText("30");
+        up1LevelText.SetText("" + up1Level);
+        up1PriceText.SetText("" + up1Price);
     }
 
     IEnumerator RainDown()
@@ -59,7 +58,6 @@ public class ScoreManager : MonoBehaviour
     {
         if(currentScore >= up1Price)
         {
-            up1Amount++;
             scoreToAdd++;
             up1Level++;
             currentScore = currentScore - (int)up1Price;
