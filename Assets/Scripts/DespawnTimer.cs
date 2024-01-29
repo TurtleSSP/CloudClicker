@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class DespawnTimer : MonoBehaviour
 {
-    private void Start()
+    [SerializeField] float despawnTime = 2;
+
+    IEnumerator Start()
     {
-        StartCoroutine(Despawn());
-    }
-    IEnumerator Despawn()
-    {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(despawnTime);
         Destroy(gameObject);
     }
 }

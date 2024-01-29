@@ -11,7 +11,8 @@ public class Upgrade : MonoBehaviour
     [SerializeField] TMP_Text upgradePriceTxt;
     [SerializeField] TMP_Text warningTxt;
 
-    [SerializeField] int upgradeAmount;
+    [SerializeField] int autoUpgradeAmount;
+    [SerializeField] int clickUpgradeAmount;
     [SerializeField] float priceIncrease;
     [SerializeField] float upgradePrice;
 
@@ -29,7 +30,8 @@ public class Upgrade : MonoBehaviour
         if (scoreManager.currentScore >= upgradePrice)
         {
             upgradeLevel++;
-            scoreManager.scoreToAdd += upgradeAmount;
+            scoreManager.scoreToAdd += autoUpgradeAmount;
+            scoreManager.clickAmount += clickUpgradeAmount;
             scoreManager.currentScore -= (int)upgradePrice;
             upgradePrice = Mathf.Round(upgradePrice * priceIncrease);
 
