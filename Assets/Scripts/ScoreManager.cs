@@ -26,6 +26,7 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(RainDown());
         up1LevelText.SetText("" + up1Level);
         up1PriceText.SetText("" + up1Price);
+        scoreText.color = Color.yellow;
         warningText.color = Color.red;
         warningText.enabled = false;
     }
