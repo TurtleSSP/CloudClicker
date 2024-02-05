@@ -524,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3566374388649506906, guid: 8d255d019dad0384da0d27e8e4345580, type: 3}
       propertyPath: priceIncrease
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3566374388649506906, guid: 8d255d019dad0384da0d27e8e4345580, type: 3}
       propertyPath: clickUpgradeAmount
@@ -1020,6 +1020,8 @@ MonoBehaviour:
   rainDrop: {fileID: 539510519772271428, guid: 1137c407cc89d6442999b7928c001785, type: 3}
   booster: {fileID: 2814646756649278174, guid: abc2e840422053c46beb50b289cf0d56, type: 3}
   canvas: {fileID: 1147383583}
+  maxBoostSpawnTime: 10
+  minBoostSpawnTime: 80
   scoreTxt: {fileID: 710183460}
   currentScore: 0
   scoreToAdd: 0
@@ -1595,6 +1597,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3566374388649506906, guid: 8d255d019dad0384da0d27e8e4345580, type: 3}
       propertyPath: upgradeAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566374388649506906, guid: 8d255d019dad0384da0d27e8e4345580, type: 3}
+      propertyPath: autoUpgradeAmount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6020925336705889494, guid: 8d255d019dad0384da0d27e8e4345580, type: 3}

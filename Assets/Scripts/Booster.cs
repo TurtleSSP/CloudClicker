@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Booster : MonoBehaviour
 {
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] int boostAmount = 2;
     [SerializeField] int boostTime = 10;
+    bool boostActive = false;
 
-    private void Start()
+    IEnumerator Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
+        yield return new WaitForSeconds(boostTime*2);
+        if (boostActive)
+        {
+            gameObject.transform.localScale = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Boost()
     {
-        StartCoroutine(BoostTime());
-    }
-
-    IEnumerator BoostTime()
-    {
-        scoreManager.scoreBoost = boostAmount;
-        yield return new WaitForSeconds(boostTime);
-        scoreManager.scoreBoost = 1;
-        Destroy(gameObject);
+        StartCoroutine(scoreManager.BoostTime(gameObject, boostAmount, boostTime, boostActive));
+        gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 }
