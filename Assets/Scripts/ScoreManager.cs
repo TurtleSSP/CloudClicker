@@ -8,13 +8,20 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] GameObject rainDrop;
     [SerializeField] GameObject booster;
+    [SerializeField] GameObject cloud;
     [SerializeField] Canvas canvas;
+
+    [SerializeField] Animator clickAnim;
 
     [SerializeField] int maxBoostSpawnTime = 80;
     [SerializeField] int minBoostSpawnTime = 10;
 
+    [SerializeField] int maxCloudSpawnTime = 60;
+    [SerializeField] int minCloudSpawnTime = 15;
+
     public TMP_Text scoreTxt;
 
+    public float scorePerSecond = 1;
     public int currentScore = 0;
     public int scoreToAdd = 0;
     public int scoreBoost = 1;
@@ -22,9 +29,21 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("AddAutoScore", 0, 1);
+        StartCoroutine(AutoScore());
         StartCoroutine(RainDown());
         StartCoroutine(BoostSpawner());
+        StartCoroutine(CloudSpawner());
+    }
+
+    IEnumerator AutoScore()
+    {
+        while(true)
+        {
+            currentScore += scoreToAdd * scoreBoost;
+            scoreTxt.SetText("Raindrops: " + currentScore);
+            yield return new WaitForSeconds(scorePerSecond);
+        }
+
     }
 
     IEnumerator RainDown()
@@ -34,7 +53,7 @@ public class ScoreManager : MonoBehaviour
             yield return new WaitForSeconds(0);
             if(scoreToAdd >= 1)
             {
-                yield return new WaitForSeconds(1f/(scoreToAdd * scoreBoost));
+                yield return new WaitForSeconds(scorePerSecond/(scoreToAdd * scoreBoost));
                 Instantiate(rainDrop);
             }
         }
@@ -52,17 +71,24 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void AddAutoScore()
+    IEnumerator CloudSpawner()
     {
-        currentScore += scoreToAdd * scoreBoost;
-        scoreTxt.SetText("Score: " + currentScore);
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(minCloudSpawnTime, maxCloudSpawnTime));
+            int x = Random.Range(-50, 50) * (16 / 9);
+            int y = Random.Range(-50, 50);
+            GameObject obj = Instantiate(cloud, canvas.transform);
+            obj.GetComponent<RectTransform>().position = new Vector3(x, y, canvas.transform.position.z);
+        }
     }
 
     public void AddScore()
     {
         currentScore += clickAmount * scoreBoost;
-        scoreTxt.SetText("Score: " + currentScore);
+        scoreTxt.SetText("Raindrops: " + currentScore);
         Instantiate(rainDrop);
+        clickAnim.SetTrigger("Click");
     }
 
     public IEnumerator BoostTime(GameObject booster, int amount, int time, bool active)
@@ -73,5 +99,11 @@ public class ScoreManager : MonoBehaviour
         scoreBoost = 1;
         active = false;
         Destroy(booster);
+    }
+
+    public void AddBoostScore(int addScore)
+    {
+        currentScore += addScore;
+        scoreTxt.SetText("Raindrops: " + currentScore);
     }
 }

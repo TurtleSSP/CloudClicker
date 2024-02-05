@@ -13,6 +13,7 @@ public class Upgrade : MonoBehaviour
 
     [SerializeField] int autoUpgradeAmount;
     [SerializeField] int clickUpgradeAmount;
+    [SerializeField] float speedUpgradeAmount;
     [SerializeField] float priceIncrease;
     [SerializeField] float upgradePrice;
 
@@ -33,11 +34,12 @@ public class Upgrade : MonoBehaviour
             scoreManager.scoreToAdd += autoUpgradeAmount;
             scoreManager.clickAmount += clickUpgradeAmount;
             scoreManager.currentScore -= (int)upgradePrice;
+            scoreManager.scorePerSecond = scoreManager.scorePerSecond * speedUpgradeAmount;
             upgradePrice = Mathf.Round(upgradePrice * priceIncrease);
 
             upgradeLevelTxt.SetText(upgradeLevel.ToString());
             upgradePriceTxt.SetText(upgradePrice.ToString());
-            scoreManager.scoreTxt.SetText("Score: " + scoreManager.currentScore);
+            scoreManager.scoreTxt.SetText("Raindrops: " + scoreManager.currentScore);
             warningTxt.enabled = false;
         }
         else
